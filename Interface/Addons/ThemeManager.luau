@@ -36,7 +36,7 @@ end
 
 local ThemeManager = {}
 do
-    ThemeManager.Folder = "ObsidianLibSettings"
+    ThemeManager.Folder = "MalevolentLibSettings"
     -- if not isfolder(ThemeManager.Folder) then makefolder(ThemeManager.Folder) end
 
     ThemeManager.Library = nil
@@ -526,5 +526,5 @@ do
     ThemeManager:BuildFolderTree()
 end
 
-getgenv().ObsidianThemeManager = ThemeManager
+getgenv().MalevolentThemeManager = ThemeManager
 return ThemeManager

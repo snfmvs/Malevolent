@@ -94,25 +94,25 @@ local Library = {
     DPIRegistry = {},
 }
 
-local ObsidianImageManager = {
+local MalevolentImageManager = {
     Assets = {
         TransparencyTexture = {
             RobloxId = 139785960036434,
-            Path = "Obsidian/assets/TransparencyTexture.png",
+            Path = "Malevolent/assets/TransparencyTexture.png",
 
             Id = nil
         },
         
         SaturationMap = {
             RobloxId = 4155801252,
-            Path = "Obsidian/assets/SaturationMap.png",
+            Path = "Malevolent/assets/SaturationMap.png",
 
             Id = nil
         }
     }
 }
 do
-    local BaseURL = "https://raw.githubusercontent.com/deividcomsono/Obsidian/refs/heads/main/"
+    local BaseURL = "https://raw.githubusercontent.com/snfmvs/Malevolent/refs/heads/main/"
 
     local function RecursiveCreatePath(Path: string, IsFile: boolean?)
         if not isfolder or not makefolder then return end
@@ -135,12 +135,12 @@ do
         return TraversedPath
     end
 
-    function ObsidianImageManager.GetAsset(AssetName: string)
-        if not ObsidianImageManager.Assets[AssetName] then
+    function MalevolentImageManager.GetAsset(AssetName: string)
+        if not MalevolentImageManager.Assets[AssetName] then
             return nil
         end
 
-        local AssetData = ObsidianImageManager.Assets[AssetName]
+        local AssetData = MalevolentImageManager.Assets[AssetName]
         if AssetData.Id then
             return AssetData.Id
         end
@@ -159,7 +159,7 @@ do
         return AssetID
     end
 
-    function ObsidianImageManager.DownloadAsset(AssetPath: string)
+    function MalevolentImageManager.DownloadAsset(AssetPath: string)
         if not getcustomasset or not writefile or not isfile then
             return
         end
@@ -170,12 +170,12 @@ do
             return
         end
 
-        local URLPath = AssetPath:gsub("Obsidian/", "")
+        local URLPath = AssetPath:gsub("Malevolent/", "")
         writefile(AssetPath, game:HttpGet(BaseURL .. URLPath))
     end
 
-    for _, Data in ObsidianImageManager.Assets do
-        ObsidianImageManager.DownloadAsset(Data.Path)
+    for _, Data in MalevolentImageManager.Assets do
+        MalevolentImageManager.DownloadAsset(Data.Path)
     end
 end
 
@@ -1089,7 +1089,7 @@ local function ParentUI(UI: Instance, SkipHiddenUI: boolean?)
 end
 
 local ScreenGui = New("ScreenGui", {
-    Name = "Obsidian",
+    Name = "Malevolent",
     DisplayOrder = 999,
     ResetOnSpawn = false,
 })
@@ -2271,7 +2271,7 @@ do
         })
 
         local HolderTransparency = New("ImageLabel", {
-            Image = ObsidianImageManager.GetAsset("TransparencyTexture"),
+            Image = MalevolentImageManager.GetAsset("TransparencyTexture"),
             ImageTransparency = (1 - ColorPicker.Transparency),
             ScaleType = Enum.ScaleType.Tile,
             Size = UDim2.fromScale(1, 1),
@@ -2324,7 +2324,7 @@ do
         --// Sat Map
         local SatVipMap = New("ImageButton", {
             BackgroundColor3 = ColorPicker.Value,
-            Image = ObsidianImageManager.GetAsset("SaturationMap"),
+            Image = MalevolentImageManager.GetAsset("SaturationMap"),
             Size = UDim2.fromOffset(200, 200),
             Parent = ColorHolder,
         })
@@ -2370,7 +2370,7 @@ do
         local TransparencySelector, TransparencyColor, TransparencyCursor
         if Info.Transparency then
             TransparencySelector = New("ImageButton", {
-                Image = ObsidianImageManager.GetAsset("TransparencyTexture"),
+                Image = MalevolentImageManager.GetAsset("TransparencyTexture"),
                 ScaleType = Enum.ScaleType.Tile,
                 Size = UDim2.fromOffset(16, 200),
                 TileSize = UDim2.fromOffset(8, 8),
