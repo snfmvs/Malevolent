@@ -5373,6 +5373,7 @@ function Library:CreateWindow(WindowInfo)
             New("ImageLabel", {
                 Image = if tonumber(WindowInfo.Icon) then string.format("rbxassetid://%d", WindowInfo.Icon) else WindowInfo.Icon,
                 Size = WindowInfo.IconSize,
+                ImageColor3 = "AccentColor",
                 Parent = TitleHolder,
             })
         end
