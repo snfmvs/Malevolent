@@ -5384,13 +5384,14 @@ function Library:CreateWindow(WindowInfo)
             20,
             TitleHolder.AbsoluteSize.X - (WindowInfo.Icon and WindowInfo.IconSize.X.Offset + 6 or 0) - 12
         )
-        New("TextLabel", {
+        local Title = New("TextLabel", {
             BackgroundTransparency = 1,
             Size = UDim2.new(0, X, 1, 0),
             Text = WindowInfo.Title,
             TextSize = 20,
             Parent = TitleHolder,
         })
+        Title.FontFace.Weight = Enum.FontWeight.Heavy
 
         --// Top Right Bar
         local RightWrapper = New("Frame", {
