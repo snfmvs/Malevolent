@@ -401,7 +401,7 @@ local SaveManager = {} do
 
         local section = tab:AddLeftGroupbox("Configuration", "folder-cog")
 
-        section:AddInput("SaveManager_ConfigName",    { Text = "Config name" })
+        section:AddInput("SaveManager_ConfigName",    { Text = "Configuration name" })
         section:AddButton("Create config", function()
             local name = self.Library.Options.SaveManager_ConfigName.Value
 
@@ -411,10 +411,10 @@ local SaveManager = {} do
 
             local success, err = self:Save(name)
             if not success then
-                return self.Library:Notify("Failed to create config: " .. err)
+                return self.Library:Notify("Failed to create configuration: " .. err)
             end
 
-            self.Library:Notify(string.format("Created config %q", name))
+            self.Library:Notify(string.format("Created configuration %q", name))
 
             self.Library.Options.SaveManager_ConfigList:SetValues(self:RefreshConfigList())
             self.Library.Options.SaveManager_ConfigList:SetValue(nil)
@@ -422,37 +422,37 @@ local SaveManager = {} do
 
         section:AddDivider()
 
-        section:AddDropdown("SaveManager_ConfigList", { Text = "Config list", Values = self:RefreshConfigList(), AllowNull = true })
-        section:AddButton("Load config", function()
+        section:AddDropdown("SaveManager_ConfigList", { Text = "Configuration list", Values = self:RefreshConfigList(), AllowNull = true })
+        section:AddButton("Load configuration", function()
             local name = self.Library.Options.SaveManager_ConfigList.Value
 
             local success, err = self:Load(name)
             if not success then
-                return self.Library:Notify("Failed to load config: " .. err)
+                return self.Library:Notify("Failed to load configuration: " .. err)
             end
 
-            self.Library:Notify(string.format("Loaded config %q", name))
+            self.Library:Notify(string.format("Loaded configuration %q", name))
         end)
-        section:AddButton("Overwrite config", function()
+        section:AddButton("Overwrite configuration", function()
             local name = self.Library.Options.SaveManager_ConfigList.Value
 
             local success, err = self:Save(name)
             if not success then
-                return self.Library:Notify("Failed to overwrite config: " .. err)
+                return self.Library:Notify("Failed to overwrite configuration: " .. err)
             end
 
-            self.Library:Notify(string.format("Overwrote config %q", name))
+            self.Library:Notify(string.format("Overwrote configuration %q", name))
         end)
 
-        section:AddButton("Delete config", function()
+        section:AddButton("Delete configuration", function()
             local name = self.Library.Options.SaveManager_ConfigList.Value
 
             local success, err = self:Delete(name)
             if not success then
-                return self.Library:Notify("Failed to delete config: " .. err)
+                return self.Library:Notify("Failed to delete configuration: " .. err)
             end
 
-            self.Library:Notify(string.format("Deleted config %q", name))
+            self.Library:Notify(string.format("Deleted configuration %q", name))
             self.Library.Options.SaveManager_ConfigList:SetValues(self:RefreshConfigList())
             self.Library.Options.SaveManager_ConfigList:SetValue(nil)
         end)
@@ -467,23 +467,23 @@ local SaveManager = {} do
 
             local success, err = self:SaveAutoloadConfig(name)
             if not success then
-                return self.Library:Notify("Failed to set autoload config: " .. err)
+                return self.Library:Notify("Failed to set autoload configuration: " .. err)
             end
 
-            SaveManager.AutoloadLabel:SetText("Current autoload config: " .. name)
+            SaveManager.AutoloadLabel:SetText("Current autoload configuration: " .. name)
             self.Library:Notify(string.format("Set %q to auto load", name))
         end)
         section:AddButton("Reset autoload", function()
             local success, err = self:DeleteAutoLoadConfig()
             if not success then
-                return self.Library:Notify("Failed to set autoload config: " .. err)
+                return self.Library:Notify("Failed to set autoload configuration: " .. err)
             end
 
             self.Library:Notify("Set autoload to none")
-            SaveManager.AutoloadLabel:SetText("Current autoload config: none")
+            SaveManager.AutoloadLabel:SetText("Current autoload configuration: none")
         end)
 
-        self.AutoloadLabel = section:AddLabel("Current autoload config: " .. self:GetAutoloadConfig(), true)
+        self.AutoloadLabel = section:AddLabel("Current autoload configuration: " .. self:GetAutoloadConfig(), true)
 
         -- self:LoadAutoloadConfig()
         self:SetIgnoreIndexes({ "SaveManager_ConfigList", "SaveManager_ConfigName" })
