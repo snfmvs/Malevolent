@@ -5082,6 +5082,7 @@ function Library:Notify(...)
             BackgroundTransparency = 1,
             Text = Data.Title,
             TextSize = 15,
+            TextColor3 = "AccentColor"
             TextXAlignment = Enum.TextXAlignment.Left,
             TextWrapped = true,
             Parent = Holder,
